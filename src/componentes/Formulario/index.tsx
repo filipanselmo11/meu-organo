@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import './Formulario.css'
 import { FormularioProps } from '../../interfaces/FormularioProps'
 import CampoTexto from '../CampoTexto'
+import ListaSuspensa from '../ListaSuspensa'
+import Botao from '../Botao'
 
 const Formulario = (props: FormularioProps) => {
     const [nome, setNome] = useState('')
@@ -29,7 +31,7 @@ const Formulario = (props: FormularioProps) => {
     return (
         <section className="formulario">
             <form onSubmit={evento => aoSalvar(evento)}>
-                <h2>Preencha os dados para criar o card do colaborador</h2>
+                <h2 style={{ color: '#00b4d8'}}>Preencha os dados para criar o card do colaborador</h2>
                 <CampoTexto
                     obrigatorio={true}
                     label="Nome"
@@ -56,6 +58,16 @@ const Formulario = (props: FormularioProps) => {
                     valor={data}
                     aoAlterado={valor => setNome(valor)}
                 />
+                <ListaSuspensa
+                    obrigatorio={true}
+                    label="Time"
+                    itens={props.times}
+                    valor={time}
+                    aoAlterado={valor => setTime(valor)}
+                />
+                <Botao>
+                    Criar Card
+                </Botao>
             </form>
         </section>
     )
